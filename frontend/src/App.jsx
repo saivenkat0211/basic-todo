@@ -1,5 +1,5 @@
 
-import react,{ useState } from 'react'
+import react,{ useState ,useEffect} from 'react'
 
 import CreateTodo from './Components/CreateTodo'
 import './App.css'
@@ -7,13 +7,16 @@ import AllTodos from './Components/AllTodos'
 function App() {
   const [todos,setTodos] = useState([])
   
-  fetch("http://localhost:4004/todolist").then(
-  async function(response){
-    const json = await response.json();
-    setTodos(json)
+  useEffect(()=>{
+    fetch("http://localhost:4004/todolist").then(
+    async function(response){
+      const json = await response.json();
+      setTodos(json)
 
-  }
-)
+     })
+  },[])
+  
+
 
   // console.log(data)
 
